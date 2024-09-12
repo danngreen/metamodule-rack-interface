@@ -8,11 +8,6 @@
 namespace rack
 {
 
-template<typename ModuleT>
-std::unique_ptr<CoreProcessor> create_vcv_module() {
-	return std::make_unique<ModuleT>();
-}
-
 // Allocates and constructs a Model that can
 // create the given Module and ModuleWidget subclasses
 // To match VCV Rack API, ownership of the Model is passed to the caller.
@@ -39,7 +34,7 @@ plugin::Model *createModel(std::string_view slug) {
 
 	plugin::Model *model = new ModelT;
 	model->slug = slug;
-	model->creation_func = create_vcv_module<ModuleT>;
+	model->creation_func = CoreProcessor::create_module<ModuleT>;
 	return model;
 }
 

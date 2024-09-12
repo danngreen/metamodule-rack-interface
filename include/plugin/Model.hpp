@@ -31,7 +31,7 @@ struct Model {
 	Plugin *plugin = nullptr;
 
 	//MetaModule:
-	using CreateModuleFunc = std::unique_ptr<CoreProcessor> (*)();
+	using CreateModuleFunc = CoreProcessor *(*)();
 	CreateModuleFunc creation_func;
 
 	std::string slug{};
